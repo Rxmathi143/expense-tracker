@@ -29,10 +29,13 @@ idna==3.19
 msgpack==1.2.2
 proto-plus==1.28.4
 protobuf==7.36.1
+psycopg==3.3.5
+psycopg-binary==3.3.5
 pyasn1==0.6.4
 pyasn1_modules==0.4.2
 pycparser==3.0
 PyJWT==2.13.0
+PyMySQL==1.2.0
 python-dotenv==1.2.3
 requests==2.34.2
 sqlparse==0.6.0
