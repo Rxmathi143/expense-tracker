@@ -1,0 +1,1039 @@
+/* =========================================================
+   EXPENSE TRACKER — REGISTER PAGE
+   Light Mode + Dark Orange Glow Mode
+========================================================= */
+
+.register-page {
+  --bg: #f6f8f4;
+  --ink: #16281e;
+  --ink-soft: #43594c;
+  --green-deep: #1f3d2e;
+  --green: #2f6b4a;
+  --green-mid: #5aae7e;
+  --mint: #dceedf;
+  --mint-soft: #eef6ef;
+  --gold: #e7b84d;
+  --paper: #ffffff;
+  --line: #cbddd0;
+
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+
+  padding: 40px 20px;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(90, 174, 126, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(231, 184, 77, 0.10),
+      transparent 30%
+    ),
+    var(--bg);
+
+  color: var(--ink);
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.register-page *,
+.register-page *::before,
+.register-page *::after {
+  box-sizing: border-box;
+}
+
+.register-page button,
+.register-page input {
+  font-family: inherit;
+}
+
+/* =========================================================
+   THEME CONTROL
+========================================================= */
+
+.register-theme-control {
+  position: absolute;
+  top: 24px;
+  right: clamp(20px, 5vw, 55px);
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  z-index: 10;
+}
+
+.register-theme-icon {
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+
+  user-select: none;
+
+  transition: transform 0.3s ease;
+}
+
+.register-theme-icon:hover {
+  transform: scale(1.1);
+}
+
+.register-theme-text {
+  font-size: 11px;
+  line-height: 1.3;
+
+  color: var(--ink-soft);
+
+  white-space: nowrap;
+
+  transition: color 0.3s ease;
+}
+
+/* =========================================================
+   THEME TOGGLE
+========================================================= */
+
+.register-theme-toggle {
+  width: 46px;
+  height: 24px;
+
+  padding: 3px;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  background: var(--mint);
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.register-theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+.register-theme-circle {
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: var(--green-deep);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+.register-glow {
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  border-radius: 50%;
+
+  filter: blur(100px);
+
+  opacity: 0.28;
+
+  pointer-events: none;
+
+  transition:
+    background 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.glow-one {
+  background: var(--green-mid);
+
+  top: -150px;
+  left: -120px;
+
+  animation:
+    glowMoveOne 8s ease-in-out infinite alternate;
+}
+
+.glow-two {
+  background: var(--gold);
+
+  bottom: -160px;
+  right: -100px;
+
+  animation:
+    glowMoveTwo 10s ease-in-out infinite alternate;
+}
+
+@keyframes glowMoveOne {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(80px, 70px);
+  }
+}
+
+@keyframes glowMoveTwo {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-70px, -60px);
+  }
+}
+
+/* =========================================================
+   REGISTER CARD
+========================================================= */
+
+.register-card {
+  width: 100%;
+  max-width: 450px;
+
+  position: relative;
+  z-index: 2;
+
+  padding: 42px 42px 30px;
+
+  border: 1px solid var(--line);
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  box-shadow:
+    0 30px 80px rgba(31, 61, 46, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  animation: cardAppear 0.7s ease forwards;
+
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-logo {
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 16px;
+
+  display: block;
+
+  border-radius: 18px;
+
+  object-fit: cover;
+
+  box-shadow:
+    0 10px 30px rgba(47, 107, 74, 0.20);
+
+  transform: rotate(-5deg);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.register-logo:hover {
+  transform: rotate(0deg) scale(1.08);
+}
+
+.register-header h1 {
+  margin: 0;
+
+  font-size: 27px;
+  font-weight: 750;
+
+  letter-spacing: -0.5px;
+
+  color: var(--green-deep);
+
+  transition: color 0.35s ease;
+}
+
+.register-header h2 {
+  margin: 10px 0 6px;
+
+  font-size: 21px;
+  font-weight: 650;
+
+  color: var(--green);
+
+  transition: color 0.35s ease;
+}
+
+.register-header p {
+  margin: 0;
+
+  color: var(--ink-soft);
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  transition: color 0.35s ease;
+}
+
+.register-header p span {
+  color: var(--green);
+  font-weight: 600;
+
+  transition: color 0.35s ease;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.register-field {
+  margin-bottom: 18px;
+}
+
+.register-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--ink);
+
+  transition: color 0.3s ease;
+}
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.input-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+
+  left: 15px;
+
+  font-size: 15px;
+
+  opacity: 0.7;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+.input-wrapper input {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 15px 0 44px;
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  outline: none;
+
+  color: var(--ink);
+
+  background: rgba(255, 255, 255, 0.72);
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.input-wrapper input::placeholder {
+  color: #8a968e;
+}
+
+.input-wrapper input:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.input-wrapper input:focus {
+  border-color: rgba(47, 107, 74, 0.65);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(47, 107, 74, 0.10),
+    0 0 20px rgba(47, 107, 74, 0.08);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.register-error {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin: 5px 0 17px;
+
+  padding: 11px 13px;
+
+  border: 1px solid rgba(220, 70, 70, 0.25);
+  border-radius: 10px;
+
+  color: #c73535;
+
+  background: rgba(220, 70, 70, 0.07);
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  animation: errorAppear 0.25s ease;
+}
+
+.register-error p {
+  margin: 0;
+}
+
+.register-error span {
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: #e74c3c;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@keyframes errorAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   REGISTER BUTTON
+========================================================= */
+
+.register-button {
+  width: 100%;
+  height: 50px;
+
+  margin-top: 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2f6b4a,
+      #1f3d2e
+    );
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 25px rgba(31, 61, 46, 0.20);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.register-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 15px 35px rgba(31, 61, 46, 0.28);
+}
+
+.register-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.register-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.button-arrow {
+  font-size: 19px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.register-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.loading-spinner {
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+
+  border-radius: 50%;
+
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.register-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 24px;
+
+  font-size: 13px;
+
+  color: var(--ink-soft);
+
+  transition: color 0.3s ease;
+}
+
+.register-login button {
+  padding: 0;
+
+  border: none;
+
+  color: var(--green);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition:
+    color 0.2s ease;
+}
+
+.register-login button:hover {
+  color: var(--green-mid);
+
+  text-decoration: underline;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.register-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 25px;
+
+  color: #829087;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+  transition: color 0.3s ease;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.register-page.dark-mode {
+  --bg: #070707;
+  --ink: #f5f5f5;
+  --ink-soft: #a7a7a7;
+  --green-deep: #ffffff;
+  --green: #ff8a00;
+  --green-mid: #ffb347;
+  --mint: #1a120b;
+  --mint-soft: #11100e;
+  --gold: #ff9d2e;
+  --paper: #111111;
+  --line: #292929;
+
+  background:
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(255, 100, 0, 0.15),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 22%,
+      rgba(255, 140, 0, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 80, 0, 0.10),
+      transparent 35%
+    ),
+    #070707;
+
+  color: var(--ink);
+}
+
+/* =========================================================
+   DARK GLOWS
+========================================================= */
+
+.register-page.dark-mode .register-glow {
+  opacity: 0.35;
+}
+
+.register-page.dark-mode .glow-one {
+  background: #ff7a00;
+}
+
+.register-page.dark-mode .glow-two {
+  background: #ff3c00;
+}
+
+/* =========================================================
+   DARK THEME CONTROL
+========================================================= */
+
+.register-page.dark-mode .register-theme-text {
+  color: #858585;
+}
+
+.register-page.dark-mode .register-theme-toggle {
+  background: #21170d;
+
+  border-color: #ff7d00;
+}
+
+.register-page.dark-mode .register-theme-circle {
+  background: #ff8a00;
+
+  box-shadow:
+    0 0 12px rgba(255, 120, 0, 0.75);
+}
+
+.register-page.dark-mode .register-theme-toggle.dark {
+  justify-content: flex-end;
+
+  background: #21170d;
+
+  border-color: #ff7d00;
+}
+
+/* =========================================================
+   DARK CARD
+========================================================= */
+
+.register-page.dark-mode .register-card {
+  border-color: rgba(255, 255, 255, 0.12);
+
+  background: rgba(20, 20, 20, 0.72);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   DARK HEADER
+========================================================= */
+
+.register-page.dark-mode .register-logo {
+  box-shadow:
+    0 10px 30px rgba(255, 102, 0, 0.25);
+}
+
+.register-page.dark-mode .register-header h1 {
+  color: #ffffff;
+}
+
+.register-page.dark-mode .register-header h2 {
+  color: #ff9a3d;
+}
+
+.register-page.dark-mode .register-header p {
+  color: #999999;
+}
+
+.register-page.dark-mode .register-header p span {
+  color: #d5d5d5;
+}
+
+/* =========================================================
+   DARK LABELS
+========================================================= */
+
+.register-page.dark-mode .register-field label {
+  color: #d8d8d8;
+}
+
+/* =========================================================
+   DARK INPUTS
+========================================================= */
+
+.register-page.dark-mode .input-wrapper input {
+  border-color: rgba(255, 255, 255, 0.10);
+
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.register-page.dark-mode .input-wrapper input::placeholder {
+  color: #666666;
+}
+
+.register-page.dark-mode .input-wrapper input:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.register-page.dark-mode .input-wrapper input:focus {
+  border-color: rgba(255, 135, 35, 0.75);
+
+  background: rgba(255, 255, 255, 0.075);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 120, 20, 0.10),
+    0 0 20px rgba(255, 120, 20, 0.08);
+}
+
+/* =========================================================
+   DARK ERROR
+========================================================= */
+
+.register-page.dark-mode .register-error {
+  border-color: rgba(255, 70, 70, 0.25);
+
+  color: #ff8585;
+
+  background: rgba(255, 60, 60, 0.08);
+}
+
+/* =========================================================
+   DARK REGISTER BUTTON
+========================================================= */
+
+.register-page.dark-mode .register-button {
+  background:
+    linear-gradient(
+      135deg,
+      #ff9d00,
+      #ff5a00
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 10px 25px rgba(255, 91, 0, 0.20);
+}
+
+.register-page.dark-mode .register-button:hover:not(:disabled) {
+  box-shadow:
+    0 15px 35px rgba(255, 91, 0, 0.30);
+}
+
+/* =========================================================
+   DARK LOGIN
+========================================================= */
+
+.register-page.dark-mode .register-login {
+  color: #777777;
+}
+
+.register-page.dark-mode .register-login button {
+  color: #ff9a3d;
+}
+
+.register-page.dark-mode .register-login button:hover {
+  color: #ffb46a;
+}
+
+/* =========================================================
+   DARK FOOTER
+========================================================= */
+
+.register-page.dark-mode .register-footer {
+  color: #4f4f4f;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.register-page button:focus-visible,
+.register-page input:focus-visible {
+  outline: 2px solid var(--green);
+
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .register-theme-control {
+    top: 18px;
+    right: 18px;
+  }
+
+  .register-theme-text {
+    max-width: 190px;
+
+    white-space: normal;
+
+    text-align: right;
+  }
+}
+
+@media (max-width: 500px) {
+  .register-page {
+    padding: 80px 15px 25px;
+  }
+
+  .register-theme-control {
+    top: 16px;
+    right: 15px;
+  }
+
+  .register-theme-text {
+    display: none;
+  }
+
+  .register-card {
+    padding: 32px 24px 25px;
+
+    border-radius: 20px;
+  }
+
+  .register-header {
+    margin-bottom: 25px;
+  }
+
+  .register-header h1 {
+    font-size: 24px;
+  }
+
+  .register-header h2 {
+    font-size: 19px;
+  }
+
+  .register-logo {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (max-height: 700px) {
+  .register-page {
+    align-items: flex-start;
+
+    overflow-y: auto;
+
+    padding-top: 75px;
+    padding-bottom: 25px;
+  }
+}
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .register-page *,
+  .register-page *::before,
+  .register-page *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- VERY SMALL PHONES (below the existing 500px rule) ---------- */
+@media (max-width: 360px) {
+  .register-page {
+    padding: 70px 12px 20px;
+  }
+  .register-card {
+    padding: 26px 18px 20px;
+  }
+  .register-logo {
+    width: 46px;
+    height: 46px;
+  }
+  .register-header h1 {
+    font-size: 21px;
+  }
+  .register-header h2 {
+    font-size: 17px;
+  }
+  .input-wrapper input {
+    height: 44px;
+    font-size: 13px;
+    padding-left: 40px;
+  }
+  .input-icon {
+    left: 13px;
+    font-size: 13px;
+  }
+  .register-button {
+    height: 46px;
+    font-size: 13px;
+  }
+}
+
+/* ---------- SHORT VIEWPORTS / LANDSCAPE: this page centers vertically,
+   which clips the card when height is tight ---------- */
+@media (max-height: 720px) {
+  .register-page {
+    align-items: flex-start;
+    padding-top: 50px;
+  }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .register-page {
+    padding-top: 30px;
+  }
+  .register-header {
+    margin-bottom: 16px;
+  }
+  .register-logo {
+    display: none;
+  }
+}
+
+/* ---------- TABLET: cap the glow blur radius so it doesn't eat the card on mid widths ---------- */
+@media (max-width: 900px) {
+  .register-glow {
+    width: 260px;
+    height: 260px;
+    filter: blur(70px);
+  }
+}

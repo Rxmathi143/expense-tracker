@@ -1,0 +1,2363 @@
+/* =========================================================
+   EXPENSE TRACKER — LANDING PAGE
+   Light Mode + Dark Orange Glow Mode
+========================================================= */
+
+.et-landing {
+
+  /* ---------- LIGHT THEME ---------- */
+
+  --bg: #f6f8f4;
+  --ink: #16281e;
+  --ink-soft: #43594c;
+  --green-deep: #1f3d2e;
+  --green: #2f6b4a;
+  --green-mid: #5aae7e;
+  --mint: #dceedf;
+  --mint-soft: #eef6ef;
+  --gold: #e7b84d;
+  --paper: #ffffff;
+  --line: #cbddd0;
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background: var(--bg);
+  color: var(--ink);
+
+  min-height: 100vh;
+  width: 100%;
+
+  overflow-x: hidden;
+
+  position: relative;
+
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.et-landing *,
+.et-landing *::before,
+.et-landing *::after {
+  box-sizing: border-box;
+}
+
+.et-landing button,
+.et-landing a {
+  font-family: inherit;
+}
+
+.et-landing .et-mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.et-landing .et-display {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.et-landing .et-nav {
+
+  display: grid;
+
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  padding: 22px clamp(20px, 5vw, 64px);
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 10;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.et-landing .et-brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  justify-self: start;
+}
+
+.et-landing .et-brand img {
+
+  width: 34px;
+  height: 34px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  display: block;
+}
+
+.et-landing .et-brand span {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 700;
+
+  font-size: 20px;
+
+  letter-spacing: 0.01em;
+
+  color: var(--green-deep);
+
+  transition: color 0.35s ease;
+}
+
+
+/* =========================================================
+   NAV LINKS
+========================================================= */
+
+.et-landing .et-nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 34px;
+
+  /*
+     Slightly move the navigation links to the left
+     after removing the Start Tracking button.
+  */
+
+  transform: translateX(-28px);
+}
+
+.et-landing .et-nav-links a {
+
+  color: var(--ink-soft);
+
+  text-decoration: none;
+
+  font-size: 14.5px;
+
+  font-weight: 500;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.et-landing .et-nav-links a:hover,
+.et-landing .et-nav-links a:focus-visible {
+
+  color: var(--green-deep);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   NAV ACTIONS
+========================================================= */
+
+.et-landing .et-nav-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  justify-self: end;
+}
+
+
+/* =========================================================
+   THEME SWITCH
+========================================================= */
+
+.et-landing .theme-switch {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+/* =========================================================
+   THEME RECOMMENDATION
+========================================================= */
+
+.et-landing .theme-recommendation {
+
+  font-size: 11px;
+
+  color: rgba(0, 0, 0, 0.55);
+
+  white-space: nowrap;
+
+  letter-spacing: 0.2px;
+
+  line-height: 1.3;
+
+  transition: color 0.3s ease;
+}
+
+
+/* ---------- DARK MODE RECOMMENDATION ---------- */
+
+.et-landing.dark-mode .theme-recommendation {
+
+  color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   THEME ICON
+========================================================= */
+
+.et-landing .theme-icon {
+
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 15px;
+
+  line-height: 1;
+
+  user-select: none;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.et-landing .theme-icon:hover {
+
+  transform: scale(1.1);
+}
+
+
+/* =========================================================
+   THEME TOGGLE
+========================================================= */
+
+.et-landing .theme-toggle {
+
+  width: 46px;
+  height: 24px;
+
+  padding: 3px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 999px;
+
+  background: var(--mint);
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.et-landing .theme-toggle:hover {
+
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   TOGGLE CIRCLE
+========================================================= */
+
+.et-landing .theme-toggle-circle {
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: var(--green-deep);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   DARK TOGGLE
+========================================================= */
+
+.et-landing .theme-toggle.dark {
+
+  justify-content: flex-end;
+
+  background: var(--green-deep);
+
+  border-color: var(--green-deep);
+}
+
+.et-landing .theme-toggle.dark .theme-toggle-circle {
+
+  background: var(--gold);
+
+  box-shadow:
+    0 0 10px rgba(231, 184, 77, 0.6);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.et-landing .et-hero {
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  padding:
+    clamp(28px, 6vw, 56px)
+    clamp(20px, 5vw, 64px)
+    70px;
+
+  display: grid;
+
+  grid-template-columns: 1.15fr 0.85fr;
+
+  gap: clamp(32px, 5vw, 72px);
+
+  align-items: center;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+
+  .et-landing .et-hero {
+
+    grid-template-columns: 1fr;
+
+    padding-top: 35px;
+  }
+}
+
+
+/* =========================================================
+   HERO TEXT
+========================================================= */
+
+.et-landing .et-eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 12.5px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  color: var(--green);
+
+  margin-bottom: 20px;
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-eyebrow::before {
+
+  content: "";
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--gold);
+
+  display: inline-block;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   HEADLINE
+========================================================= */
+
+.et-landing .et-headline {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 700;
+
+  font-size: clamp(42px, 6vw, 76px);
+
+  line-height: 0.98;
+
+  letter-spacing: -0.02em;
+
+  color: var(--green-deep);
+
+  margin: 0 0 24px;
+
+  transition: color 0.35s ease;
+}
+
+.et-landing .et-headline em {
+
+  font-style: normal;
+
+  color: var(--green);
+
+  transition:
+    color 0.35s ease,
+    text-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.et-landing .et-subcopy {
+
+  font-size: clamp(16px, 1.6vw, 18.5px);
+
+  line-height: 1.6;
+
+  color: var(--ink-soft);
+
+  max-width: 46ch;
+
+  margin: 0 0 32px;
+
+  transition: color 0.35s ease;
+}
+
+
+/* =========================================================
+   CTA ROW
+========================================================= */
+
+.et-landing .et-cta-row {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 22px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.et-landing .et-btn-primary {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  background: var(--green-deep);
+
+  color: #ffffff;
+
+  border: none;
+
+  padding: 15px 30px;
+
+  border-radius: 999px;
+
+  font-size: 15.5px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.et-landing .et-btn-primary:hover {
+
+  background: var(--green);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(47, 107, 74, 0.2);
+}
+
+
+/* =========================================================
+   GHOST BUTTON
+========================================================= */
+
+.et-landing .et-btn-ghost {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  background: none;
+
+  border: none;
+
+  color: var(--green-deep);
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 6px 0;
+
+  border-bottom: 1.5px solid var(--line);
+
+  text-decoration: none;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.et-landing .et-btn-ghost:hover {
+
+  border-color: var(--green);
+
+  color: var(--green);
+
+  gap: 12px;
+}
+
+
+/* =========================================================
+   HERO NOTE
+========================================================= */
+
+.et-landing .et-hero-note {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 22px;
+
+  font-size: 12.5px;
+
+  color: var(--ink-soft);
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-hero-note span {
+
+  color: var(--green);
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   RECEIPT
+========================================================= */
+
+.et-landing .et-receipt-wrap {
+
+  display: flex;
+
+  justify-content: center;
+
+  position: relative;
+}
+
+.et-landing .et-receipt {
+
+  position: relative;
+
+  background: var(--paper);
+
+  width: min(320px, 90%);
+
+  padding: 28px 26px 34px;
+
+  border-radius: 4px 4px 0 0;
+
+  border: 1px solid transparent;
+
+  box-shadow:
+    0 30px 60px -20px rgba(31, 61, 46, 0.28);
+
+  transform: rotate(2deg);
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   RECEIPT TEAR
+========================================================= */
+
+.et-landing .et-receipt::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: -11px;
+
+  height: 22px;
+
+  background:
+    linear-gradient(
+      -45deg,
+      var(--paper) 8px,
+      transparent 0
+    ),
+    linear-gradient(
+      45deg,
+      var(--paper) 8px,
+      transparent 0
+    );
+
+  background-position:
+    bottom left,
+    bottom left;
+
+  background-repeat: repeat-x;
+
+  background-size: 16px 22px;
+}
+
+
+/* =========================================================
+   RECEIPT HEADER
+========================================================= */
+
+.et-landing .et-receipt-head {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding-bottom: 16px;
+
+  margin-bottom: 16px;
+
+  border-bottom: 1.5px dashed var(--line);
+}
+
+.et-landing .et-receipt-head img {
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+.et-landing .et-receipt-head div {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 700;
+
+  font-size: 15px;
+
+  color: var(--green-deep);
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-receipt-head small {
+
+  display: block;
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-weight: 400;
+
+  font-size: 11px;
+
+  color: var(--ink-soft);
+
+  margin-top: 2px;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =========================================================
+   RECEIPT DATE
+========================================================= */
+
+.et-landing .et-receipt-date {
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 10px;
+
+  color: var(--ink-soft);
+
+  margin-bottom: 8px;
+
+  letter-spacing: 0.05em;
+}
+
+
+/* =========================================================
+   RECEIPT LINES
+========================================================= */
+
+.et-landing .et-receipt-line {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 13px;
+
+  color: var(--ink);
+
+  padding: 7px 0;
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-receipt-line span:first-child {
+
+  color: var(--ink-soft);
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.et-landing .et-receipt-divider {
+
+  border: none;
+
+  border-top: 1.5px dashed var(--line);
+
+  margin: 14px 0;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.et-landing .et-receipt-total {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: baseline;
+
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.et-landing .et-receipt-total span:first-child {
+
+  font-size: 12.5px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  color: var(--ink-soft);
+}
+
+.et-landing .et-receipt-total span:last-child {
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  color: var(--green-deep);
+}
+
+
+/* =========================================================
+   RECEIPT BADGE
+========================================================= */
+
+.et-landing .et-receipt-badge {
+
+  position: absolute;
+
+  top: -14px;
+
+  right: -14px;
+
+  background: var(--gold);
+
+  color: var(--green-deep);
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-weight: 700;
+
+  font-size: 11px;
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  transform: rotate(6deg);
+
+  box-shadow:
+    0 8px 18px -6px rgba(231, 184, 77, 0.6);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =========================================================
+   RECEIPT STATUS
+========================================================= */
+
+.et-landing .et-receipt-status {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 18px;
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 10.5px;
+
+  color: var(--ink-soft);
+}
+
+.et-landing .et-status-dot {
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--green);
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.et-landing .et-section-head {
+
+  margin-bottom: 40px;
+
+  max-width: 60ch;
+}
+
+.et-landing .et-section-eyebrow {
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 12px;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+
+  color: var(--green);
+
+  margin-bottom: 10px;
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-section-title {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 700;
+
+  font-size: clamp(28px, 3.4vw, 38px);
+
+  color: var(--green-deep);
+
+  margin: 0;
+
+  letter-spacing: -0.01em;
+
+  transition: color 0.35s ease;
+}
+
+.et-landing .et-section-description {
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+  color: var(--ink-soft);
+
+  margin: 14px 0 0;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.et-landing .et-steps {
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  padding:
+    70px
+    clamp(20px, 5vw, 64px)
+    30px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.et-landing .et-steps-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.et-landing .et-step-card {
+
+  background: var(--paper);
+
+  border: 1px solid var(--line);
+
+  border-radius: 16px;
+
+  padding: 28px 24px;
+
+  position: relative;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+.et-landing .et-step-card:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 40px rgba(31, 61, 46, 0.08);
+}
+
+.et-landing .et-step-num {
+
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 13px;
+
+  color: var(--green-mid);
+
+  margin-bottom: 12px;
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-step-line {
+
+  width: 35px;
+
+  height: 2px;
+
+  background: var(--line);
+
+  margin-bottom: 18px;
+
+  transition: background 0.3s ease;
+}
+
+.et-landing .et-step-title {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 600;
+
+  font-size: 18.5px;
+
+  color: var(--green-deep);
+
+  margin: 0 0 8px;
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-step-desc {
+
+  font-size: 14.5px;
+
+  line-height: 1.55;
+
+  color: var(--ink-soft);
+
+  margin: 0;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.et-landing .et-features {
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  padding:
+    40px
+    clamp(20px, 5vw, 64px)
+    70px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.et-landing .et-features-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+}
+
+.et-landing .et-feature-card {
+
+  background: var(--mint-soft);
+
+  border: 1px solid transparent;
+
+  border-radius: 14px;
+
+  padding: 24px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+.et-landing .et-feature-card:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 35px rgba(31, 61, 46, 0.08);
+}
+
+
+/* =========================================================
+   FEATURE ICON
+========================================================= */
+
+.et-landing .et-feature-icon {
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 10px;
+
+  background: var(--mint);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 18px;
+
+  color: var(--green);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+/* =========================================================
+   FEATURE TEXT
+========================================================= */
+
+.et-landing .et-feature-title {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 600;
+
+  font-size: 16px;
+
+  color: var(--green-deep);
+
+  margin: 0;
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-feature-desc {
+
+  font-size: 13.5px;
+
+  line-height: 1.55;
+
+  color: var(--ink-soft);
+
+  margin: 0;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =========================================================
+   CTA BAND
+========================================================= */
+
+.et-landing .et-cta-band {
+
+  max-width: 1280px;
+
+  margin: 0 auto 60px;
+
+  padding:
+    0
+    clamp(20px, 5vw, 64px);
+
+  position: relative;
+
+  z-index: 2;
+}
+
+.et-landing .et-cta-inner {
+
+  background: var(--green-deep);
+
+  border-radius: 24px;
+
+  padding: clamp(36px, 6vw, 56px);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 24px;
+
+  flex-wrap: wrap;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   CTA GLOW
+========================================================= */
+
+.et-landing .et-cta-inner::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 320px;
+  height: 320px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(90, 174, 126, 0.35),
+      transparent 70%
+    );
+
+  top: -140px;
+
+  right: -80px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CTA TITLE
+========================================================= */
+
+.et-landing .et-cta-inner h3 {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 700;
+
+  font-size: clamp(24px, 3.2vw, 34px);
+
+  color: #ffffff;
+
+  margin: 0 0 8px;
+
+  letter-spacing: -0.01em;
+
+  position: relative;
+}
+
+.et-landing .et-cta-inner p {
+
+  color: #c9ddcf;
+
+  font-size: 15px;
+
+  margin: 0;
+
+  position: relative;
+}
+
+
+/* =========================================================
+   CTA BUTTON
+========================================================= */
+
+.et-landing .et-cta-inner .et-btn-primary {
+
+  background: var(--gold);
+
+  color: var(--green-deep);
+
+  position: relative;
+
+  white-space: nowrap;
+}
+
+.et-landing .et-cta-inner .et-btn-primary:hover {
+
+  background: #f2cb6c;
+
+  box-shadow:
+    0 12px 35px rgba(231, 184, 77, 0.3);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.et-landing .et-footer {
+
+  border-top: 1px solid var(--line);
+
+  padding:
+    28px
+    clamp(20px, 5vw, 64px);
+
+  position: relative;
+
+  z-index: 2;
+
+  transition: border-color 0.3s ease;
+}
+
+.et-landing .et-footer-inner {
+
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+  flex-wrap: wrap;
+}
+
+.et-landing .et-footer-brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.et-landing .et-footer-brand img {
+
+  width: 22px;
+  height: 22px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+.et-landing .et-footer-brand span {
+
+  font-family: "Space Grotesk", sans-serif;
+
+  font-weight: 700;
+
+  font-size: 14.5px;
+
+  color: var(--green-deep);
+
+  transition: color 0.3s ease;
+}
+
+.et-landing .et-footer-note {
+
+  font-size: 13px;
+
+  color: var(--ink-soft);
+
+  transition: color 0.3s ease;
+}
+
+
+/* =========================================================
+   DARK MODE
+   BLACK + ORANGE GRADIENT GLOW
+========================================================= */
+
+.et-landing.dark-mode {
+
+  --bg: #070707;
+
+  --ink: #f5f5f5;
+
+  --ink-soft: #a7a7a7;
+
+  --green-deep: #ffffff;
+
+  --green: #ff8a00;
+
+  --green-mid: #ffb347;
+
+  --mint: #1a120b;
+
+  --mint-soft: #11100e;
+
+  --gold: #ff9d2e;
+
+  --paper: #111111;
+
+  --line: #292929;
+
+  background:
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(255, 100, 0, 0.15),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 22%,
+      rgba(255, 140, 0, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 80, 0, 0.10),
+      transparent 35%
+    ),
+    #070707;
+
+  color: var(--ink);
+}
+
+
+/* =========================================================
+   DARK AMBIENT GLOW
+========================================================= */
+
+.et-landing.dark-mode::before {
+
+  content: "";
+
+  position: fixed;
+
+  width: 500px;
+  height: 500px;
+
+  left: -220px;
+
+  top: 25%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 110, 0, 0.20),
+      rgba(255, 80, 0, 0.06) 40%,
+      transparent 72%
+    );
+
+  filter: blur(25px);
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+.et-landing.dark-mode::after {
+
+  content: "";
+
+  position: fixed;
+
+  width: 550px;
+  height: 550px;
+
+  right: -250px;
+
+  top: 5%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 150, 0, 0.17),
+      rgba(255, 90, 0, 0.05) 42%,
+      transparent 72%
+    );
+
+  filter: blur(30px);
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   DARK CONTENT LAYERS
+========================================================= */
+
+.et-landing.dark-mode .et-nav,
+.et-landing.dark-mode .et-hero,
+.et-landing.dark-mode .et-steps,
+.et-landing.dark-mode .et-features,
+.et-landing.dark-mode .et-cta-band,
+.et-landing.dark-mode .et-footer {
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   DARK NAVIGATION
+========================================================= */
+
+.et-landing.dark-mode .et-brand span {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-nav-links a {
+
+  color: #9d9d9d;
+}
+
+.et-landing.dark-mode .et-nav-links a:hover,
+.et-landing.dark-mode .et-nav-links a:focus-visible {
+
+  color: #ff9a24;
+}
+
+
+/* =========================================================
+   DARK THEME RECOMMENDATION
+========================================================= */
+
+.et-landing.dark-mode .theme-recommendation {
+
+  color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   DARK HERO
+========================================================= */
+
+.et-landing.dark-mode .et-eyebrow {
+
+  color: #ff9a24;
+}
+
+.et-landing.dark-mode .et-eyebrow::before {
+
+  background: #ff8a00;
+
+  box-shadow:
+    0 0 12px rgba(255, 125, 0, 0.85);
+}
+
+.et-landing.dark-mode .et-headline {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-headline em {
+
+  color: #ff8a00;
+
+  text-shadow:
+    0 0 25px rgba(255, 120, 0, 0.20);
+}
+
+.et-landing.dark-mode .et-subcopy {
+
+  color: #a5a5a5;
+}
+
+
+/* =========================================================
+   DARK HERO BUTTON
+========================================================= */
+
+.et-landing.dark-mode .et-btn-primary {
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7200,
+      #ffad42
+    );
+
+  color: #111111;
+
+  box-shadow:
+    0 10px 30px rgba(255, 110, 0, 0.20);
+}
+
+.et-landing.dark-mode .et-btn-primary:hover {
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff851a,
+      #ffc061
+    );
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 14px 40px rgba(255, 110, 0, 0.35);
+}
+
+
+/* =========================================================
+   DARK GHOST BUTTON
+========================================================= */
+
+.et-landing.dark-mode .et-btn-ghost {
+
+  color: #eeeeee;
+
+  border-color: #353535;
+}
+
+.et-landing.dark-mode .et-btn-ghost:hover {
+
+  color: #ff9a24;
+
+  border-color: #ff8a00;
+}
+
+
+/* =========================================================
+   DARK HERO NOTE
+========================================================= */
+
+.et-landing.dark-mode .et-hero-note {
+
+  color: #858585;
+}
+
+.et-landing.dark-mode .et-hero-note span {
+
+  color: #ff8a00;
+}
+
+
+/* =========================================================
+   DARK RECEIPT
+========================================================= */
+
+.et-landing.dark-mode .et-receipt {
+
+  background: #111111;
+
+  border-color: #292929;
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.70),
+    0 0 60px rgba(255, 100, 0, 0.10);
+}
+
+.et-landing.dark-mode .et-receipt-head {
+
+  border-color: #333333;
+}
+
+.et-landing.dark-mode .et-receipt-head div {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-receipt-head small {
+
+  color: #858585;
+}
+
+.et-landing.dark-mode .et-receipt-date {
+
+  color: #737373;
+}
+
+.et-landing.dark-mode .et-receipt-line {
+
+  color: #eeeeee;
+}
+
+.et-landing.dark-mode .et-receipt-line span:first-child {
+
+  color: #999999;
+}
+
+.et-landing.dark-mode .et-receipt-divider {
+
+  border-color: #333333;
+}
+
+.et-landing.dark-mode .et-receipt-total span:first-child {
+
+  color: #999999;
+}
+
+.et-landing.dark-mode .et-receipt-total span:last-child {
+
+  color: #ff9a24;
+}
+
+.et-landing.dark-mode .et-receipt-badge {
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7200,
+      #ffb347
+    );
+
+  color: #151515;
+
+  box-shadow:
+    0 8px 25px rgba(255, 115, 0, 0.38);
+}
+
+.et-landing.dark-mode .et-receipt-status {
+
+  color: #999999;
+}
+
+.et-landing.dark-mode .et-status-dot {
+
+  background: #ff8a00;
+
+  box-shadow:
+    0 0 10px rgba(255, 120, 0, 0.85);
+}
+
+
+/* =========================================================
+   DARK HOW IT WORKS
+========================================================= */
+
+.et-landing.dark-mode .et-section-eyebrow {
+
+  color: #ff9524;
+}
+
+.et-landing.dark-mode .et-section-title {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-section-description {
+
+  color: #929292;
+}
+
+.et-landing.dark-mode .et-step-card {
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 20, 15, 0.95),
+      rgba(15, 15, 15, 0.95)
+    );
+
+  border-color: #292929;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+.et-landing.dark-mode .et-step-card:hover {
+
+  border-color: rgba(255, 130, 0, 0.45);
+
+  box-shadow:
+    0 15px 45px rgba(255, 110, 0, 0.09);
+}
+
+.et-landing.dark-mode .et-step-num {
+
+  color: #ff8a00;
+}
+
+.et-landing.dark-mode .et-step-line {
+
+  background: #292929;
+}
+
+.et-landing.dark-mode .et-step-title {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-step-desc {
+
+  color: #969696;
+}
+
+
+/* =========================================================
+   DARK FEATURES
+========================================================= */
+
+.et-landing.dark-mode .et-feature-card {
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 120, 0, 0.08),
+      rgba(20, 20, 20, 0.96)
+    );
+
+  border-color: #292929;
+}
+
+.et-landing.dark-mode .et-feature-card:hover {
+
+  border-color: rgba(255, 130, 0, 0.45);
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 40px rgba(255, 110, 0, 0.10);
+}
+
+.et-landing.dark-mode .et-feature-icon {
+
+  background: rgba(255, 120, 0, 0.12);
+
+  color: #ff9a24;
+
+  border: 1px solid rgba(255, 130, 0, 0.18);
+}
+
+.et-landing.dark-mode .et-feature-title {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-feature-desc {
+
+  color: #929292;
+}
+
+
+/* =========================================================
+   DARK CTA
+========================================================= */
+
+.et-landing.dark-mode .et-cta-inner {
+
+  background:
+    radial-gradient(
+      circle at 90% 30%,
+      rgba(255, 115, 0, 0.22),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #171717,
+      #0c0c0c
+    );
+
+  border: 1px solid #292929;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.50);
+}
+
+.et-landing.dark-mode .et-cta-inner h3 {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-cta-inner p {
+
+  color: #999999;
+}
+
+.et-landing.dark-mode .et-cta-inner .et-section-eyebrow {
+
+  color: #ff9524;
+}
+
+.et-landing.dark-mode .et-cta-inner .et-btn-primary {
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7200,
+      #ffad42
+    );
+
+  color: #111111;
+}
+
+
+/* =========================================================
+   DARK FOOTER
+========================================================= */
+
+.et-landing.dark-mode .et-footer {
+
+  border-color: #292929;
+}
+
+.et-landing.dark-mode .et-footer-brand span {
+
+  color: #ffffff;
+}
+
+.et-landing.dark-mode .et-footer-note {
+
+  color: #777777;
+}
+
+
+/* =========================================================
+   DARK MODE SWITCH
+========================================================= */
+
+.et-landing.dark-mode .theme-toggle {
+
+  background: #242424;
+
+  border-color: #3a3a3a;
+}
+
+.et-landing.dark-mode .theme-toggle-circle {
+
+  background: #ff8a00;
+
+  box-shadow:
+    0 0 12px rgba(255, 120, 0, 0.75);
+}
+
+.et-landing.dark-mode .theme-toggle.dark {
+
+  background: #21170d;
+
+  border-color: #ff7d00;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 980px) {
+
+  .et-landing .et-features-grid {
+
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .et-landing .et-nav-links {
+
+    transform: translateX(-15px);
+
+    gap: 25px;
+  }
+}
+
+
+/* =========================================================
+   STEPS
+========================================================= */
+
+@media (max-width: 860px) {
+
+  .et-landing .et-steps-grid {
+
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+@media (max-width: 780px) {
+
+  .et-landing .et-nav {
+
+    grid-template-columns: auto 1fr auto;
+
+    padding-left: 20px;
+
+    padding-right: 20px;
+  }
+
+  .et-landing .et-nav-mobile-hide {
+
+    display: none;
+  }
+
+  .et-landing .et-nav-links {
+
+    gap: 18px;
+
+    transform: translateX(0);
+
+    justify-self: center;
+  }
+
+  .et-landing .et-nav-actions {
+
+    gap: 8px;
+  }
+
+  .et-landing .et-brand span {
+
+    font-size: 17px;
+  }
+
+  .et-landing .theme-recommendation {
+
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+  .et-landing .et-features-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .et-landing .et-nav {
+
+    padding-top: 18px;
+
+    padding-bottom: 18px;
+
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .et-landing .et-brand img {
+
+    width: 30px;
+    height: 30px;
+  }
+
+  .et-landing .et-brand span {
+
+    font-size: 16px;
+  }
+
+  .et-landing .et-nav-links {
+
+    gap: 13px;
+
+    justify-self: center;
+  }
+
+  .et-landing .et-nav-links a {
+
+    font-size: 12px;
+  }
+
+  .et-landing .theme-switch {
+
+    gap: 4px;
+  }
+
+  .et-landing .theme-icon {
+
+    font-size: 13px;
+
+    width: 17px;
+    height: 17px;
+  }
+
+  .et-landing .theme-toggle {
+
+    width: 42px;
+
+    height: 23px;
+  }
+
+  .et-landing .et-hero {
+
+    padding-top: 30px;
+
+    padding-bottom: 60px;
+  }
+
+  .et-landing .et-headline {
+
+    font-size: clamp(40px, 12vw, 58px);
+  }
+
+  .et-landing .et-cta-row {
+
+    gap: 15px;
+  }
+
+  .et-landing .et-btn-primary {
+
+    padding: 13px 24px;
+  }
+
+  .et-landing .et-receipt {
+
+    width: min(310px, 92%);
+  }
+
+  .et-landing .et-footer-inner {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .et-landing .et-nav {
+
+    padding-left: 14px;
+
+    padding-right: 14px;
+  }
+
+  .et-landing .et-brand span {
+
+    display: none;
+  }
+
+  .et-landing .et-nav-links {
+
+    gap: 10px;
+  }
+
+  .et-landing .et-nav-links a {
+
+    font-size: 11px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.et-landing button:focus-visible,
+.et-landing a:focus-visible {
+
+  outline: 2px solid var(--green);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .et-landing *,
+  .et-landing *::before,
+  .et-landing *::after {
+
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* ---------- LAPTOP / SMALL DESKTOP (narrow windows) ---------- */
+@media (max-width: 1200px) {
+  .et-landing .et-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- TABLET: give steps 2 columns instead of jumping 3 -> 1 ---------- */
+@media (max-width: 980px) and (min-width: 601px) {
+  .et-landing .et-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .et-landing .et-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- TABLET NAV: prevent overlap when both links + actions are wide ---------- */
+@media (max-width: 900px) {
+  .et-landing .et-nav {
+    grid-template-columns: auto 1fr auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .et-landing .et-nav-links {
+    transform: none;
+    gap: 16px;
+    justify-self: center;
+  }
+  .et-landing .et-hero {
+    text-align: center;
+  }
+  .et-landing .et-cta-row {
+    justify-content: center;
+  }
+  .et-landing .et-hero-note {
+    justify-content: center;
+  }
+  .et-landing .et-receipt-wrap {
+    margin-top: 24px;
+  }
+}
+
+/* ---------- CTA BAND: stack on tablets before it gets cramped ---------- */
+@media (max-width: 700px) {
+  .et-landing .et-cta-inner {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+  .et-landing .et-cta-inner .et-btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------- SMALL PHONES ---------- */
+@media (max-width: 480px) {
+  .et-landing .et-nav-links a {
+    font-size: 11px;
+  }
+  .et-landing .et-hero {
+    padding-bottom: 50px;
+  }
+  .et-landing .et-subcopy {
+    max-width: 32ch;
+    margin-inline: auto;
+  }
+  .et-landing .et-cta-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .et-landing .et-btn-primary,
+  .et-landing .et-btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+  .et-landing .et-steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .et-landing .et-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .et-landing .et-footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ---------- VERY SMALL PHONES ---------- */
+@media (max-width: 360px) {
+  .et-landing .et-receipt {
+    padding: 22px 18px 28px;
+  }
+  .et-landing .et-receipt-badge {
+    top: -10px;
+    right: -10px;
+    font-size: 10px;
+    padding: 5px 9px;
+  }
+  .et-landing .et-cta-inner {
+    padding: 28px 20px;
+  }
+}
+
+/* ---------- LANDSCAPE PHONES ---------- */
+@media (max-width: 900px) and (max-height: 440px) and (orientation: landscape) {
+  .et-landing .et-hero {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+  .et-landing .et-receipt-wrap {
+    margin-top: 0;
+  }
+}

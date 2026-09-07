@@ -1,0 +1,818 @@
+/* =========================================================
+   TRANSACTIONS
+========================================================= */
+
+.transactions-container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.transaction-filters {
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) 180px 200px;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    height: 46px;
+    padding: 0 15px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
+
+    transition: 0.25s ease;
+}
+
+.search-box:focus-within {
+    border-color: rgba(255, 140, 0, 0.60);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 140, 0, 0.08),
+        0 5px 18px rgba(0, 0, 0, 0.20);
+}
+
+.search-box span {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 22px;
+    line-height: 1;
+}
+
+.search-box input {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.40);
+}
+
+.transaction-filters select {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 14px;
+
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
+
+    transition: 0.25s ease;
+}
+
+.transaction-filters select:focus {
+    border-color: rgba(255, 140, 0, 0.60);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 140, 0, 0.08),
+        0 5px 18px rgba(0, 0, 0, 0.20);
+}
+
+.transaction-filters select option {
+    background: #161616;
+    color: white;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.transaction-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.transaction-table {
+    width: 100%;
+
+    /*
+       Fixed layout makes the heading and content
+       stay perfectly aligned in the same columns.
+    */
+    table-layout: fixed;
+
+    min-width: 900px;
+
+    border-collapse: collapse;
+
+    text-align: left;
+}
+
+
+/* =========================================================
+   FIXED COLUMN WIDTHS
+========================================================= */
+
+.transaction-table th:nth-child(1),
+.transaction-table td:nth-child(1) {
+    width: 12%;
+}
+
+.transaction-table th:nth-child(2),
+.transaction-table td:nth-child(2) {
+    width: 30%;
+}
+
+.transaction-table th:nth-child(3),
+.transaction-table td:nth-child(3) {
+    width: 16%;
+}
+
+.transaction-table th:nth-child(4),
+.transaction-table td:nth-child(4) {
+    width: 14%;
+}
+
+.transaction-table th:nth-child(5),
+.transaction-table td:nth-child(5) {
+    width: 16%;
+}
+
+.transaction-table th:nth-child(6),
+.transaction-table td:nth-child(6) {
+    width: 12%;
+}
+
+
+/* =========================================================
+   TABLE HEADINGS
+========================================================= */
+
+.transaction-table th {
+    padding: 15px 18px;
+
+    text-align: left;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+
+    color: rgba(255, 255, 255, 0.50);
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    white-space: nowrap;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TABLE CELLS
+========================================================= */
+
+.transaction-table td {
+    padding: 17px 18px;
+
+    text-align: left;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* Keep every cell's content inside its column */
+.transaction-table th,
+.transaction-table td {
+    overflow-wrap: normal;
+}
+
+
+/* =========================================================
+   ROW
+========================================================= */
+
+.transaction-table tbody tr {
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.transaction-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.transaction-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.transaction-date {
+    display: block;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TRANSACTION TITLE
+========================================================= */
+
+.transaction-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.transaction-title > div:last-child {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.transaction-title strong {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: white;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================
+   Transaction Description
+========================= */
+
+.transaction-title small {
+    display: block;
+    margin-top: 4px;
+    max-width: 230px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 11px;
+    line-height: 1.4;
+
+    transition: color 0.25s ease;
+}
+
+
+/* DARK MODE */
+
+.app-layout.dark-mode .transaction-title small {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* LIGHT MODE */
+
+.app-layout.light-mode .transaction-title small {
+    color: #333333 !important;
+    opacity: 1 !important;
+}
+
+/* =========================
+   Transaction Text Theme
+========================= */
+
+.app-layout.dark-mode .transaction-title strong {
+    color: #ffffff;
+}
+
+.app-layout.light-mode .transaction-title strong {
+    color: #111111 !important;
+}
+
+.app-layout.dark-mode .transaction-title small {
+    color: #aaaaaa !important;
+}
+
+.app-layout.light-mode .transaction-title small {
+    color: #333333 !important;
+}
+
+.app-layout.dark-mode .transaction-date {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.app-layout.light-mode .transaction-date {
+    color: #444444 !important;
+}
+
+
+/* =========================================================
+   TRANSACTION ICON
+========================================================= */
+
+.transaction-icon {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.income-icon {
+    background: rgba(0, 255, 157, 0.10);
+    color: #00e891;
+}
+
+.expense-icon {
+    background: rgba(255, 80, 80, 0.10);
+    color: #ff6b6b;
+}
+
+
+/* =========================================================
+   CATEGORY BADGE
+========================================================= */
+
+.category-badge {
+    display: inline-block;
+
+    max-width: 100%;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   TYPE BADGE
+========================================================= */
+
+.type-badge {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+.income-badge {
+    background: rgba(0, 255, 157, 0.09);
+    color: #00e891;
+}
+
+.expense-badge {
+    background: rgba(255, 80, 80, 0.09);
+    color: #ff6b6b;
+}
+
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.transaction-amount {
+    display: inline-block;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.income-amount {
+    color: #00e891;
+}
+
+.expense-amount {
+    color: #ff6b6b;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.transaction-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 7px;
+
+    white-space: nowrap;
+}
+
+.edit-button,
+.delete-button {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.edit-button:hover {
+    background: rgba(255, 170, 0, 0.12);
+
+    border-color: rgba(255, 170, 0, 0.35);
+
+    transform: translateY(-2px);
+}
+
+.delete-button:hover {
+    background: rgba(255, 70, 70, 0.12);
+
+    border-color: rgba(255, 70, 70, 0.35);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   LOADING / ERROR / EMPTY
+========================================================= */
+
+.no-transactions {
+    padding: 45px !important;
+
+    text-align: center !important;
+
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.transaction-message {
+    padding: 40px;
+
+    text-align: center;
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.error-message {
+    color: #ff7070;
+}
+
+
+/* =========================================================
+   LIGHT MODE
+   This works when Dashboard adds .light-mode to the page.
+========================================================= */
+
+.light-mode .transactions-container {
+    color: #171717;
+}
+
+
+/* Filters */
+
+.light-mode .search-box {
+    background: rgba(255, 255, 255, 0.82);
+
+    border-color: rgba(20, 20, 20, 0.15);
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.13);
+}
+
+.light-mode .search-box span {
+    color: rgba(20, 20, 20, 0.55);
+}
+
+.light-mode .search-box input {
+    color: #171717;
+}
+
+.light-mode .search-box input::placeholder {
+    color: rgba(20, 20, 20, 0.42);
+}
+
+.light-mode .transaction-filters select {
+    background: rgba(255, 255, 255, 0.82);
+
+    border-color: rgba(20, 20, 20, 0.15);
+
+    color: #171717;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.13);
+}
+
+.light-mode .transaction-filters select option {
+    background: white;
+    color: #171717;
+}
+
+
+/* Table */
+
+.light-mode .transaction-table-wrapper {
+    background: rgba(255, 255, 255, 0.78);
+
+    border-color: rgba(20, 20, 20, 0.12);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.14);
+}
+
+.light-mode .transaction-table th {
+    color: rgba(20, 20, 20, 0.65);
+
+    background: rgba(0, 0, 0, 0.035);
+
+    border-bottom-color: rgba(20, 20, 20, 0.12);
+}
+
+.light-mode .transaction-table td {
+    border-bottom-color: rgba(20, 20, 20, 0.09);
+
+    color: #202020;
+}
+
+.light-mode .transaction-table tbody tr:hover {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+
+/* Date */
+
+.light-mode .transaction-date {
+    color: #4a4a4a;
+}
+
+
+/* Transaction title */
+
+.light-mode .transaction-title strong {
+    color: #151515;
+}
+
+.light-mode .transaction-title small {
+    color: #000000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block;
+}
+
+.light-mode .transaction-title > div small {
+    color: #000000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+/* Category */
+
+.light-mode .category-badge {
+    background: rgba(0, 0, 0, 0.045);
+
+    border-color: rgba(20, 20, 20, 0.12);
+
+    color: #333333;
+
+    box-shadow:
+        0 3px 9px rgba(0, 0, 0, 0.10);
+}
+
+
+/* Buttons */
+
+.light-mode .edit-button,
+.light-mode .delete-button {
+    background: rgba(255, 255, 255, 0.85);
+
+    border-color: rgba(20, 20, 20, 0.13);
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.13);
+}
+
+
+/* Messages */
+
+.light-mode .no-transactions {
+    color: #555555;
+}
+
+.light-mode .transaction-message {
+    color: #555555;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .transaction-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .search-box {
+        grid-column: 1 / -1;
+    }
+
+    .transaction-table {
+        min-width: 900px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .transaction-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box {
+        grid-column: auto;
+    }
+
+    .transaction-table {
+        min-width: 900px;
+    }
+}
+
+
+/* ---------- Smooth, obviously-scrollable table on touch devices ---------- */
+.transaction-table-wrapper {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+
+@media (max-width: 850px) {
+  /* a visible fade hints there's more content to scroll */
+  .transaction-table-wrapper {
+    background:
+      linear-gradient(to right, rgba(0,0,0,0.25), transparent 20px) 0 0,
+      linear-gradient(to left, rgba(0,0,0,0.25), transparent 20px) 100% 0;
+    background-repeat: no-repeat;
+    background-size: 20px 100%;
+    background-attachment: local, scroll;
+  }
+}
+
+/* ---------- SMALL PHONES ---------- */
+@media (max-width: 480px) {
+  .transaction-filters {
+    gap: 10px;
+  }
+  .search-box,
+  .transaction-filters select {
+    height: 44px;
+    font-size: 13px;
+  }
+  .transaction-table th {
+    padding: 12px 14px;
+    font-size: 10px;
+  }
+  .transaction-table td {
+    padding: 13px 14px;
+    font-size: 12.5px;
+  }
+  .transaction-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+  .transaction-title strong {
+    font-size: 13px;
+  }
+  .transaction-title small {
+    max-width: 160px;
+  }
+  .edit-button,
+  .delete-button {
+    width: 38px; /* slightly larger than desktop for touch, not smaller */
+    height: 38px;
+  }
+}
+
+/* ---------- VERY SMALL PHONES ---------- */
+@media (max-width: 360px) {
+  .transaction-table {
+    min-width: 760px;
+  }
+  .category-badge,
+  .type-badge {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+}
+
+/* ---------- Larger touch targets on any coarse pointer, regardless of width ---------- */
+@media (pointer: coarse) {
+  .transaction-filters select,
+  .search-box input {
+    min-height: 46px;
+  }
+}

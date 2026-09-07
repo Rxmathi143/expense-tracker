@@ -1,0 +1,820 @@
+/* =========================================================
+   TRANSACTION MODAL
+   Used by BOTH AddTransaction and EditTransaction
+   Popup always stays in dark glass theme
+========================================================= */
+
+
+/* =========================
+   Modal Overlay
+========================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================
+   Transaction Modal
+========================= */
+
+.transaction-modal {
+    width: 100%;
+    max-width: 520px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 28px;
+
+    box-sizing: border-box;
+
+    border-radius: 22px;
+
+    /* IMPORTANT:
+       Always dark — light dashboard
+       will NOT affect this popup */
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35, 35, 35, 0.99),
+            rgba(15, 15, 15, 0.99)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.75),
+        0 10px 35px rgba(0, 0, 0, 0.45);
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 140, 0, 0.45) transparent;
+}
+
+
+/* Modal scrollbar */
+
+.transaction-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.transaction-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.transaction-modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 140, 0, 0.45);
+    border-radius: 10px;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.modal-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   Modal Heading
+========================= */
+
+.modal-header h2 {
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================
+   Modal Subtitle
+========================= */
+
+.modal-header p {
+    margin: 5px 0 0;
+
+    color: rgba(255, 255, 255, 0.48) !important;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Close Button
+========================= */
+
+.close-button {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #ffffff !important;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.close-button:hover {
+    background: rgba(255, 80, 80, 0.15);
+
+    border-color: rgba(255, 80, 80, 0.30);
+
+    color: #ff7070 !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Form Group
+========================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+
+/* =========================
+   Labels
+========================= */
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: rgba(255, 255, 255, 0.72) !important;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   Inputs / Select / Textarea
+========================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.045) !important;
+
+    color: #ffffff !important;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* =========================
+   Input Focus
+========================= */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: rgba(255, 140, 0, 0.60);
+
+    background: rgba(255, 255, 255, 0.055) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 140, 0, 0.08),
+        0 5px 20px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================
+   Placeholder
+========================= */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+
+    color: rgba(255, 255, 255, 0.30) !important;
+
+    opacity: 1;
+}
+
+
+/* =========================
+   Textarea
+========================= */
+
+.form-group textarea {
+
+    resize: vertical;
+
+    min-height: 80px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   Select
+========================= */
+
+.form-group select {
+
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+
+/* Dropdown options */
+
+.form-group select option {
+
+    background: #181818 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================
+   Date Input
+========================= */
+
+.form-group input[type="date"] {
+
+    color: #ffffff !important;
+
+    color-scheme: dark;
+}
+
+
+/* =========================
+   Number Input
+========================= */
+
+.form-group input[type="number"] {
+
+    color: #ffffff !important;
+}
+
+
+/* =========================
+   Type Selection
+========================= */
+
+.type-selection {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+
+/* =========================
+   Type Buttons
+========================= */
+
+.type-option {
+
+    padding: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.04) !important;
+
+    color: rgba(255, 255, 255, 0.60) !important;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.type-option:hover {
+
+    border-color: rgba(255, 255, 255, 0.20);
+
+    background: rgba(255, 255, 255, 0.07) !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Active Expense
+========================= */
+
+.active-expense {
+
+    background: rgba(255, 80, 80, 0.12) !important;
+
+    border-color: rgba(255, 80, 80, 0.45);
+
+    color: #ff7070 !important;
+
+    box-shadow:
+        0 0 15px rgba(255, 80, 80, 0.08);
+}
+
+
+/* =========================
+   Active Income
+========================= */
+
+.active-income {
+
+    background: rgba(0, 255, 157, 0.10) !important;
+
+    border-color: rgba(0, 255, 157, 0.40);
+
+    color: #00e891 !important;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 157, 0.07);
+}
+
+
+/* =========================
+   Error
+========================= */
+
+.form-error {
+
+    margin-bottom: 15px;
+
+    padding: 11px 13px;
+
+    border: 1px solid rgba(255, 70, 70, 0.20);
+
+    border-radius: 9px;
+
+    background: rgba(255, 70, 70, 0.08);
+
+    color: #ff7777 !important;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   Modal Actions
+========================= */
+
+.modal-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================
+   Cancel Button
+========================= */
+
+.cancel-button {
+
+    padding: 11px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.05) !important;
+
+    color: rgba(255, 255, 255, 0.70) !important;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.cancel-button:hover {
+
+    background: rgba(255, 255, 255, 0.09) !important;
+
+    border-color: rgba(255, 255, 255, 0.15);
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   Save / Update Button
+========================= */
+
+.save-button {
+
+    padding: 11px 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9a00,
+            #ff5c00
+        ) !important;
+
+    color: #ffffff !important;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(255, 100, 0, 0.22);
+
+    transition: 0.2s ease;
+}
+
+
+.save-button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(255, 100, 0, 0.30);
+}
+
+
+.save-button:disabled {
+
+    opacity: 0.60;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================
+   IMPORTANT THEME PROTECTION
+   Popup stays dark even when
+   dashboard changes to light mode
+========================= */
+
+.app-layout.light-mode .modal-overlay .transaction-modal,
+.app-layout.dark-mode .modal-overlay .transaction-modal {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35, 35, 35, 0.99),
+            rgba(15, 15, 15, 0.99)
+        ) !important;
+
+    color: #ffffff !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .transaction-modal h2,
+.app-layout.dark-mode .modal-overlay .transaction-modal h2 {
+
+    color: #ffffff !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .transaction-modal p,
+.app-layout.dark-mode .modal-overlay .transaction-modal p {
+
+    color: rgba(255, 255, 255, 0.48) !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .transaction-modal label,
+.app-layout.dark-mode .modal-overlay .transaction-modal label {
+
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .transaction-modal input,
+.app-layout.light-mode .modal-overlay .transaction-modal select,
+.app-layout.light-mode .modal-overlay .transaction-modal textarea,
+.app-layout.dark-mode .modal-overlay .transaction-modal input,
+.app-layout.dark-mode .modal-overlay .transaction-modal select,
+.app-layout.dark-mode .modal-overlay .transaction-modal textarea {
+
+    background: rgba(255, 255, 255, 0.045) !important;
+
+    color: #ffffff !important;
+
+    border-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .transaction-modal input::placeholder,
+.app-layout.light-mode .modal-overlay .transaction-modal textarea::placeholder {
+
+    color: rgba(255, 255, 255, 0.30) !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .type-option {
+
+    background: rgba(255, 255, 255, 0.04) !important;
+
+    color: rgba(255, 255, 255, 0.60) !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .active-expense {
+
+    background: rgba(255, 80, 80, 0.12) !important;
+
+    color: #ff7070 !important;
+}
+
+
+.app-layout.light-mode .modal-overlay .active-income {
+
+    background: rgba(0, 255, 157, 0.10) !important;
+
+    color: #00e891 !important;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 550px) {
+
+    .modal-overlay {
+
+        padding: 12px;
+    }
+
+
+    .transaction-modal {
+
+        max-height: 94vh;
+
+        padding: 20px;
+
+        border-radius: 18px;
+    }
+
+
+    .modal-header {
+
+        margin-bottom: 20px;
+    }
+
+
+    .modal-header h2 {
+
+        font-size: 20px;
+    }
+
+
+    .modal-header p {
+
+        font-size: 12px;
+    }
+
+
+    .modal-actions {
+
+        flex-direction: column-reverse;
+
+        width: 100%;
+    }
+
+
+    .cancel-button,
+    .save-button {
+
+        width: 100%;
+
+        min-height: 44px;
+    }
+
+
+    .type-selection {
+
+        gap: 8px;
+    }
+
+}
+
+
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 16px;
+  }
+}
+
+/* ---------- SMALL PHONES (between the existing 550px rule and true small) ---------- */
+@media (max-width: 420px) {
+  .transaction-modal {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .modal-header h2 {
+    font-size: 18px;
+  }
+  .modal-header p {
+    font-size: 11.5px;
+  }
+  .close-button {
+    width: 30px;
+    height: 30px;
+    font-size: 19px;
+  }
+  .form-group {
+    margin-bottom: 14px;
+  }
+  .form-group label {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  .type-selection {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .type-option {
+    padding: 10px;
+    font-size: 12.5px;
+  }
+  .modal-actions {
+    margin-top: 18px;
+  }
+}
+
+/* ---------- VERY SMALL PHONES ---------- */
+@media (max-width: 340px) {
+  .modal-overlay {
+    padding: 8px;
+  }
+  .transaction-modal {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .modal-header {
+    margin-bottom: 16px;
+  }
+  .modal-header h2 {
+    font-size: 16.5px;
+  }
+  /* stack type buttons if labels are long on a 320px screen */
+  .type-option {
+    font-size: 11.5px;
+    padding: 9px 6px;
+  }
+}
+
+/* ---------- SHORT VIEWPORTS / LANDSCAPE PHONES:
+   the modal is height-capped at 90vh already, but on a short
+   landscape phone that's still not enough room to breathe ---------- */
+@media (max-height: 500px) {
+  .modal-overlay {
+    align-items: flex-start;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .transaction-modal {
+    max-height: 96vh;
+  }
+  .modal-header {
+    margin-bottom: 14px;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  .form-group textarea {
+    min-height: 50px;
+  }
+}
+
+/* ---------- Larger touch targets on coarse pointers, any width ---------- */
+@media (pointer: coarse) {
+  .close-button {
+    width: 38px;
+    height: 38px;
+  }
+  .cancel-button,
+  .save-button {
+    min-height: 44px;
+  }
+  .type-option {
+    min-height: 44px;
+  }
+}
+
+/* ---------- Foldables / very narrow (< 300px) safety net ---------- */
+@media (max-width: 300px) {
+  .type-selection {
+    grid-template-columns: 1fr;
+  }
+}

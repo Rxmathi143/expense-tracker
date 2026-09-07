@@ -1,0 +1,567 @@
+/* =========================
+   Sidebar
+========================= */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: var(--sidebar-w, 240px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 25px 16px;
+
+    background: rgba(15, 15, 15, 0.92);
+
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(15px);
+
+    z-index: 100;
+}
+
+
+/* =========================
+   Logo
+========================= */
+
+.sidebar-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 5px 8px 30px;
+}
+
+
+.logo-icon {
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #ff9a00,
+        #ff5c00
+    );
+
+    color: white;
+
+    font-size: 19px;
+
+    font-weight: 800;
+}
+
+
+.sidebar-logo h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+
+.sidebar-logo span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   Navigation
+========================= */
+
+.sidebar-navigation {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.nav-item {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px 13px;
+
+    border: 1px solid transparent;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.5);
+
+    text-align: left;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.nav-item span {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.045);
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+.nav-item.active {
+    background: rgba(255, 140, 0, 0.10);
+
+    border-color: rgba(255, 140, 0, 0.18);
+
+    color: #ff9a00;
+}
+
+
+/* =========================
+   Bottom
+========================= */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+
+.sidebar .logout-button {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 12px 13px;
+
+    border-radius: 10px;
+
+    border: 1px solid transparent;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.5);
+
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.sidebar .logout-button:hover {
+    background: rgba(255, 70, 70, 0.08);
+
+    border-color: rgba(255, 70, 70, 0.15);
+
+    color: #ff7070;
+}
+
+
+/* =========================
+   Mobile Sidebar
+========================= */
+
+.sidebar-overlay {
+    display: none;
+}
+
+
+.mobile-menu-button {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+
+        transition: transform 0.3s ease;
+
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.35);
+    }
+
+
+    .sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+
+    .sidebar-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        display: block;
+
+        background: rgba(0, 0, 0, 0.55);
+
+        backdrop-filter: blur(3px);
+
+        z-index: 99;
+    }
+
+
+    .mobile-menu-button {
+        position: fixed;
+
+        top: 18px;
+
+        left: 18px;
+
+        width: 42px;
+
+        height: 42px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        border-radius: 10px;
+
+        background: rgba(20, 20, 20, 0.8);
+
+        color: white;
+
+        font-size: 20px;
+
+        cursor: pointer;
+
+        z-index: 80;
+    }
+
+
+    .main-content {
+        margin-left: 0;
+
+        padding: 70px 18px 25px;
+    }
+
+}
+
+/* =========================
+   Expense Tracker Logo
+========================= */
+
+.sidebar-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 20px 18px;
+}
+
+
+.expense-logo-glow {
+    position: relative;
+
+    width: 52px;
+
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* Soft glow behind logo */
+
+.expense-logo-glow::before {
+    content: "";
+
+    position: absolute;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #ff7a00;
+
+    filter: blur(20px);
+
+    opacity: 0.55;
+
+    z-index: 0;
+
+    animation: logoGlow 3s ease-in-out infinite;
+}
+
+
+/* Second subtle glow */
+
+.expense-logo-glow::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 140, 0, 0.12);
+
+    box-shadow:
+        0 0 20px rgba(255, 140, 0, 0.35);
+
+    z-index: 0;
+}
+
+
+.expense-logo {
+    position: relative;
+
+    z-index: 2;
+
+    width: 44px;
+
+    height: 44px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 0 6px rgba(255, 140, 0, 0.8)
+        )
+        drop-shadow(
+            0 0 15px rgba(255, 100, 0, 0.45)
+        );
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.expense-logo-glow:hover .expense-logo {
+    transform: scale(1.08);
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(255, 160, 0, 1)
+        )
+        drop-shadow(
+            0 0 22px rgba(255, 100, 0, 0.7)
+        )
+        drop-shadow(
+            0 0 35px rgba(255, 80, 0, 0.35)
+        );
+}
+
+
+@keyframes logoGlow {
+
+    0%,
+    100% {
+        opacity: 0.45;
+
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 0.75;
+
+        transform: scale(1.12);
+    }
+
+}
+
+
+/* =========================
+   Sidebar Brand Text
+========================= */
+
+.sidebar-brand-text h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+.sidebar-brand-text span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 10px;
+
+    letter-spacing: 0.4px;
+}
+
+
+.logout-icon {
+  width: 22px;
+  height: 22px;
+
+  object-fit: contain;
+
+  display: block;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+button:hover .logout-icon {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* =====================================
+   SIDEBAR ROUTER LINKS
+===================================== */
+
+.sidebar-navigation .nav-item {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove default link underline */
+.sidebar-navigation .nav-item:hover,
+.sidebar-navigation .nav-item:focus,
+.sidebar-navigation .nav-item:visited {
+  text-decoration: none;
+}
+
+/* =====================================
+   HOVER EFFECT
+===================================== */
+
+.sidebar-navigation .nav-item {
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.sidebar-navigation .nav-item:hover {
+  transform: translateX(4px);
+  background: rgba(255, 122, 0, 0.10);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Keep active item visually distinct */
+.sidebar-navigation .nav-item.active {
+  text-decoration: none;
+}
+
+
+.dark-theme .sidebar-navigation .nav-item:hover {
+  background: rgba(255, 122, 0, 0.14);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ---------- LAPTOP / TABLET: narrow the sidebar instead of hiding it ---------- */
+@media (max-width: 1024px) {
+  .sidebar {
+    --sidebar-w: 200px;
+  }
+  .sidebar-logo h2,
+  .sidebar-brand-text span,
+  .nav-item span + span,
+  .nav-item {
+    font-size: 12.5px;
+  }
+}
+
+/* Icon-only collapsed rail on narrower laptops, still above the
+   mobile-drawer breakpoint (768px) defined already in this file */
+@media (max-width: 900px) and (min-width: 769px) {
+  .sidebar {
+    --sidebar-w: 76px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .sidebar-brand-text,
+  .nav-item span:last-child,
+  .sidebar .logout-button span:last-child {
+    display: none;
+  }
+  .sidebar-logo,
+  .nav-item,
+  .sidebar .logout-button {
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* ---------- Larger touch targets on touch devices ---------- */
+@media (pointer: coarse) {
+  .nav-item,
+  .sidebar .logout-button {
+    padding: 14px 13px;
+  }
+  .mobile-menu-button {
+    width: 46px;
+    height: 46px;
+  }
+}

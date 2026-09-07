@@ -1,0 +1,1038 @@
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+.login-page {
+  --bg: #f6f8f4;
+  --ink: #16281e;
+  --ink-soft: #43594c;
+  --green-deep: #1f3d2e;
+  --green: #2f6b4a;
+  --green-mid: #5aae7e;
+  --mint: #dceedf;
+  --mint-soft: #eef6ef;
+  --gold: #e7b84d;
+  --paper: #ffffff;
+  --line: #cbddd0;
+
+  position: relative;
+
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 24px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      rgba(90, 174, 126, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(231, 184, 77, 0.08),
+      transparent 30%
+    ),
+    var(--bg);
+
+  color: var(--ink);
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+.login-page *,
+.login-page *::before,
+.login-page *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   THEME SWITCH
+========================================================= */
+
+.theme-switch {
+  position: fixed;
+
+  top: 24px;
+  right: 28px;
+
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-icon {
+  font-size: 15px;
+  line-height: 1;
+  user-select: none;
+}
+
+.theme-toggle {
+  width: 46px;
+  height: 25px;
+
+  padding: 3px;
+
+  border: 1px solid var(--line);
+
+  border-radius: 999px;
+
+  background: var(--mint);
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.06);
+}
+
+.theme-toggle-circle {
+  width: 17px;
+  height: 17px;
+
+  border-radius: 50%;
+
+  background: var(--green-deep);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.theme-toggle.dark {
+  justify-content: flex-end;
+
+  background: #21170d;
+
+  border-color: #ff7d00;
+}
+
+.theme-toggle.dark .theme-toggle-circle {
+  background: #ff8a00;
+
+  box-shadow:
+    0 0 8px rgba(255, 120, 0, 0.7),
+    0 0 16px rgba(255, 120, 0, 0.3);
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+.login-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(90px);
+
+  opacity: 0.25;
+
+  animation:
+    loginGlow 7s ease-in-out infinite alternate;
+
+  transition:
+    opacity 0.4s ease,
+    background 0.4s ease;
+}
+
+.login-glow-one {
+  width: 300px;
+  height: 300px;
+
+  top: -120px;
+  left: -120px;
+
+  background: rgba(90, 174, 126, 0.45);
+}
+
+.login-glow-two {
+  width: 280px;
+  height: 280px;
+
+  right: -110px;
+  bottom: -110px;
+
+  background: rgba(231, 184, 77, 0.25);
+
+  animation-delay: 2s;
+}
+
+@keyframes loginGlow {
+  from {
+    transform: scale(1);
+    opacity: 0.18;
+  }
+
+  to {
+    transform: scale(1.2);
+    opacity: 0.30;
+  }
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.login-container {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+  max-width: 430px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.login-logo {
+  width: 82px;
+  height: 82px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  border: 1px solid rgba(47, 107, 74, 0.16);
+
+  box-shadow:
+    0 15px 35px rgba(31, 61, 46, 0.12),
+    0 0 25px rgba(90, 174, 126, 0.10);
+
+  backdrop-filter: blur(12px);
+
+  animation:
+    logoFloat 4s ease-in-out infinite;
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.login-logo img {
+  width: 60px;
+  height: 60px;
+
+  object-fit: contain;
+
+  display: block;
+
+  filter:
+    drop-shadow(
+      0 4px 10px rgba(31, 61, 46, 0.15)
+    );
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.login-heading h1 {
+  margin: 0;
+
+  color: var(--green-deep);
+
+  font-family:
+    "Space Grotesk",
+    "Inter",
+    sans-serif;
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.02em;
+
+  transition: color 0.35s ease;
+}
+
+.login-heading p {
+  margin: 7px 0 28px;
+
+  color: var(--ink-soft);
+
+  font-size: 13px;
+
+  letter-spacing: 0.3px;
+
+  transition: color 0.35s ease;
+}
+
+
+/* =========================================================
+   LOGIN CARD
+========================================================= */
+
+.login-card {
+  width: 100%;
+
+  padding: 32px;
+
+  border-radius: 24px;
+
+  background:
+    rgba(255, 255, 255, 0.78);
+
+  border:
+    1px solid rgba(203, 221, 208, 0.95);
+
+  backdrop-filter: blur(22px);
+
+  box-shadow:
+    0 25px 65px rgba(31, 61, 46, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  text-align: left;
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.login-card-heading {
+  margin-bottom: 28px;
+}
+
+.login-card-heading h2 {
+  margin: 0;
+
+  color: var(--green-deep);
+
+  font-family:
+    "Space Grotesk",
+    "Inter",
+    sans-serif;
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+
+  transition: color 0.35s ease;
+}
+
+.login-card-heading p {
+  margin: 7px 0 0;
+
+  color: var(--ink-soft);
+
+  font-size: 12px;
+
+  transition: color 0.35s ease;
+}
+
+
+/* =========================================================
+   FORM FIELD
+========================================================= */
+
+.login-field {
+  margin-bottom: 20px;
+}
+
+.login-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--ink-soft);
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+
+  transition: color 0.35s ease;
+}
+
+.login-field input {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 15px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius: 11px;
+
+  outline: none;
+
+  background:
+    rgba(255, 255, 255, 0.75);
+
+  color: var(--ink);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.login-field input::placeholder {
+  color: #8a998f;
+}
+
+.login-field input:hover {
+  border-color: #aac5b3;
+}
+
+.login-field input:focus {
+  border-color: var(--green);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(47, 107, 74, 0.10);
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.login-error {
+  margin-bottom: 18px;
+
+  padding: 11px 13px;
+
+  border-radius: 9px;
+
+  border:
+    1px solid rgba(210, 60, 60, 0.20);
+
+  background:
+    rgba(210, 60, 60, 0.07);
+
+  color: #c43d3d;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-button {
+  width: 100%;
+
+  height: 48px;
+
+  margin-top: 5px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background:
+    var(--green-deep);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 25px rgba(31, 61, 46, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.login-button:hover:not(:disabled) {
+  background: var(--green);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 30px rgba(47, 107, 74, 0.24);
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   REGISTER LINK
+========================================================= */
+
+.login-register {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 24px;
+
+  font-size: 13px;
+
+  color: var(--ink-soft);
+}
+
+.login-register span {
+  color: var(--ink-soft);
+}
+
+.login-register button {
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--green);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.login-register button:hover {
+  color: var(--green-deep);
+
+  transform: translateY(-1px);
+
+  text-decoration: underline;
+}
+
+.login-register button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.login-footer {
+  margin-top: 22px;
+
+  color: var(--ink-soft);
+
+  opacity: 0.65;
+
+  font-size: 10px;
+
+  letter-spacing: 0.7px;
+
+  transition: color 0.35s ease;
+}
+
+
+/* =========================================================
+   DARK MODE
+   BLACK + ORANGE GLOW
+========================================================= */
+
+.login-page.dark-mode {
+  --bg: #080808;
+  --ink: #f5f5f5;
+  --ink-soft: #a8a8a8;
+  --green-deep: #ffffff;
+  --green: #ff8a00;
+  --green-mid: #ffb347;
+  --mint: #1a130c;
+  --mint-soft: #12100d;
+  --gold: #ff9d2e;
+  --paper: #111111;
+  --line: #2a2a2a;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255, 111, 0, 0.15),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 25%,
+      rgba(255, 140, 0, 0.11),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 90, 0, 0.08),
+      transparent 35%
+    ),
+    #080808;
+
+  color: var(--ink);
+}
+
+
+/* =========================================================
+   DARK MODE — GLOW
+========================================================= */
+
+.login-page.dark-mode .login-glow-one {
+  background: #ff7300;
+
+  opacity: 0.25;
+}
+
+.login-page.dark-mode .login-glow-two {
+  background: #ff4b2b;
+
+  opacity: 0.20;
+}
+
+
+/* =========================================================
+   DARK MODE — LOGO
+========================================================= */
+
+.login-page.dark-mode .login-logo {
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border-color:
+    rgba(255, 140, 0, 0.20);
+
+  box-shadow:
+    0 0 25px rgba(255, 105, 0, 0.18),
+    0 15px 40px rgba(0, 0, 0, 0.45);
+}
+
+.login-page.dark-mode .login-logo img {
+  filter:
+    drop-shadow(
+      0 0 12px rgba(255, 120, 0, 0.35)
+    );
+}
+
+
+/* =========================================================
+   DARK MODE — HEADING
+========================================================= */
+
+.login-page.dark-mode .login-heading h1 {
+  color: #ffffff;
+}
+
+.login-page.dark-mode .login-heading p {
+  color: #8f8f8f;
+}
+
+
+/* =========================================================
+   DARK MODE — CARD
+========================================================= */
+
+.login-page.dark-mode .login-card {
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  border-color:
+    rgba(255, 255, 255, 0.09);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   DARK MODE — CARD HEADING
+========================================================= */
+
+.login-page.dark-mode .login-card-heading h2 {
+  color: #ffffff;
+}
+
+.login-page.dark-mode .login-card-heading p {
+  color: #888888;
+}
+
+
+/* =========================================================
+   DARK MODE — INPUT
+========================================================= */
+
+.login-page.dark-mode .login-field label {
+  color: #b8b8b8;
+}
+
+.login-page.dark-mode .login-field input {
+  border-color: #303030;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #ffffff;
+}
+
+.login-page.dark-mode .login-field input::placeholder {
+  color: #666666;
+}
+
+.login-page.dark-mode .login-field input:hover {
+  border-color: #444444;
+}
+
+.login-page.dark-mode .login-field input:focus {
+  border-color: #ff8a00;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 120, 0, 0.09),
+    0 0 20px rgba(255, 110, 0, 0.05);
+}
+
+
+/* =========================================================
+   DARK MODE — ERROR
+========================================================= */
+
+.login-page.dark-mode .login-error {
+  border-color:
+    rgba(255, 70, 70, 0.20);
+
+  background:
+    rgba(255, 70, 70, 0.07);
+
+  color: #ff8585;
+}
+
+
+/* =========================================================
+   DARK MODE — LOGIN BUTTON
+========================================================= */
+
+.login-page.dark-mode .login-button {
+  background:
+    linear-gradient(
+      135deg,
+      #ff7200,
+      #ffad42
+    );
+
+  color: #111111;
+
+  box-shadow:
+    0 10px 30px rgba(255, 110, 0, 0.20);
+}
+
+.login-page.dark-mode .login-button:hover:not(:disabled) {
+  background:
+    linear-gradient(
+      135deg,
+      #ff851a,
+      #ffc061
+    );
+
+  box-shadow:
+    0 14px 38px rgba(255, 110, 0, 0.32);
+}
+
+
+/* =========================================================
+   DARK MODE — REGISTER
+========================================================= */
+
+.login-page.dark-mode .login-register {
+  color: #777777;
+}
+
+.login-page.dark-mode .login-register span {
+  color: #777777;
+}
+
+.login-page.dark-mode .login-register button {
+  color: #ff9a3d;
+}
+
+.login-page.dark-mode .login-register button:hover {
+  color: #ffb66d;
+}
+
+
+/* =========================================================
+   DARK MODE — FOOTER
+========================================================= */
+
+.login-page.dark-mode .login-footer {
+  color: #777777;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .login-page {
+    padding: 70px 20px 25px;
+  }
+
+  .theme-switch {
+    top: 18px;
+    right: 20px;
+  }
+
+  .login-container {
+    max-width: 100%;
+  }
+
+  .login-logo {
+    width: 68px;
+    height: 68px;
+
+    border-radius: 18px;
+  }
+
+  .login-logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .login-heading h1 {
+    font-size: 24px;
+  }
+
+  .login-heading p {
+    margin-bottom: 22px;
+  }
+
+  .login-card {
+    padding: 25px 20px;
+
+    border-radius: 20px;
+  }
+
+  .login-card-heading {
+    margin-bottom: 23px;
+  }
+
+  .login-register {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 380px) {
+  .login-page {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .login-card {
+    padding: 22px 17px;
+  }
+
+  .login-heading h1 {
+    font-size: 22px;
+  }
+}
+
+
+/* =====================================
+   FORGOT PASSWORD
+===================================== */
+
+.login-forgot-password {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: -6px;
+  margin-bottom: 18px;
+}
+
+.login-forgot-password button {
+  border: none;
+  background: transparent;
+
+  padding: 0;
+
+  color: #ff7a00;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.login-forgot-password button:hover {
+  opacity: 0.75;
+}
+
+
+
+/* ---------- MID-SIZE PHONES (between the existing 600px and 380px rules) ---------- */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 60px 16px 20px;
+  }
+  .login-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .login-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 14px;
+  }
+  .login-logo img {
+    width: 44px;
+    height: 44px;
+  }
+  .login-heading h1 {
+    font-size: 22px;
+  }
+  .login-card-heading h2 {
+    font-size: 19px;
+  }
+  .login-field input,
+  .login-button {
+    height: 44px;
+    font-size: 13px;
+  }
+}
+
+/* ---------- VERY SMALL PHONES ---------- */
+@media (max-width: 340px) {
+  .login-logo {
+    width: 54px;
+    height: 54px;
+  }
+  .login-heading h1 {
+    font-size: 20px;
+  }
+  .login-card {
+    padding: 20px 14px;
+  }
+  .login-register {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* ---------- LANDSCAPE PHONES: this is a full-height flex-centered page,
+   so short viewports need to scroll instead of clipping the card ---------- */
+@media (max-height: 560px) and (orientation: landscape) {
+  .login-page {
+    align-items: flex-start;
+    overflow-y: auto;
+    padding-top: 70px;
+    padding-bottom: 30px;
+  }
+  .login-logo {
+    display: none; /* reclaim vertical space when height is tight */
+  }
+}
+
+/* ---------- TOUCH TARGETS on any coarse pointer device ---------- */
+@media (pointer: coarse) {
+  .login-forgot-password button,
+  .login-register button {
+    padding: 6px 0;
+    min-height: 32px;
+  }
+}
