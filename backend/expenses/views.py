@@ -1,3 +1,7 @@
+import resend
+import os
+
+resend.api_key = os.getenv("RESEND_API_KEY")
 from backend.firebase import db
 from django.core.mail import send_mail
 
@@ -253,44 +257,72 @@ class ForgotCredentialsView(APIView):
         # -------------------------
 
         reset_link = (
-            "http://localhost:5173/reset-password/"
-            f"{user['id']}/{reset_token}/"
+            "https://expense-tracker-a8ftkfywk-rxmathi143s-projects.vercel.app"
+            f"/reset-password/{user['id']}/{reset_token}/"
         )
 
         # -------------------------
-        # EMAIL
+        # SEND EMAIL USING RESEND
         # -------------------------
 
-        message = f"""
-Hello {user['username']},
+        resend.Emails.send({
+            "from": "Expense Tracker <onboarding@resend.dev>",
+            "to": [email],
+            "subject": "Reset your Expense Tracker password",
+            "html": f"""
+                <h2>Password Reset</h2>
 
-You requested account recovery for your Expense Tracker account.
+                <p>Hello {user['username']},</p>
 
-Username:
-{user['username']}
+                <p>
+                    You requested account recovery for your
+                    Expense Tracker account.
+                </p>
 
-To reset your password, click the link below:
+                <p>
+                    <strong>Username:</strong>
+                    {user['username']}
+                </p>
 
-{reset_link}
+                <p>
+                    To reset your password, click the button below:
+                </p>
 
-IMPORTANT:
-This password reset link will expire in 5 minutes.
+                <p>
+                    <a href="{reset_link}"
+                       style="
+                       display:inline-block;
+                       padding:12px 20px;
+                       background:#000;
+                       color:#fff;
+                       text-decoration:none;
+                       border-radius:6px;
+                       ">
+                        Reset Password
+                    </a>
+                </p>
 
-If the link has expired, please request a new password reset link.
+                <p>
+                    This password reset link will expire in
+                    <strong>5 minutes</strong>.
+                </p>
 
-If you did not request this, you can safely ignore this email.
+                <p>
+                    If the link has expired, please request a new
+                    password reset link.
+                </p>
 
-Regards,
-Expense Tracker Team
-"""
+                <p>
+                    If you did not request this, you can safely
+                    ignore this email.
+                </p>
 
-        send_mail(
-            subject="Expense Tracker - Account Recovery",
-            message=message,
-            from_email=None,
-            recipient_list=[user["email"]],
-            fail_silently=False,
-        )
+                <p>
+                    Regards,<br>
+                    Expense Tracker Team
+                </p>
+            """
+        })
 
         return Response(
             {
