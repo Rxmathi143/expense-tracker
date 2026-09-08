@@ -221,46 +221,127 @@ def login(request):
 
 class ForgotCredentialsView(APIView):
 
-    try:
-        response = resend.Emails.send({
-            "from": "Expense Tracker <onboarding@resend.dev>",
-            "to": [email],
-            "subject": "Reset your Expense Tracker password",
-            "html": f"""
-                <h2>Password Reset</h2>
+    permission_classes = [AllowAny]
 
-                <p>Hello {user['username']},</p>
+    def post(self, request):
 
-                <p>You requested account recovery for your Expense Tracker account.</p>
+        email = request.data.get("email")
 
-                <p>
-                    <a href="{reset_link}">
-                        Reset Password
-                    </a>
-                </p>
+        if not email:
+            return Response(
+                {"error": "Email is required."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
-                <p>
-                    This password reset link will expire in
-                    <strong>5 minutes</strong>.
-                </p>
+        user = get_user_by_email(email)
 
-                <p>If you did not request this, you can safely ignore this email.</p>
+        if not user:
+            return Response(
+                {
+                    "error":
+                    "No account found with this email address."
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
 
-                <p>
-                    Regards,<br>
-                    Expense Tracker Team
-                </p>
-            """
-        })
+        # -------------------------
+        # CREATE RESET TOKEN
+        # -------------------------
 
-        print("RESEND RESPONSE:", response)
+        reset_token = create_password_reset_token(
+            user["id"]
+        )
 
-    except Exception as e:
-        print("RESEND ERROR:", repr(e))
+        # -------------------------
+        # RESET LINK
+        # -------------------------
+
+        reset_link = (
+            "https://expense-tracker-a8ftkfywk-rxmathi143s-projects.vercel.app"
+            f"/reset-password/{user['id']}/{reset_token}/"
+        )
+
+        # -------------------------
+        # SEND EMAIL USING RESEND
+        # -------------------------
+
+        try:
+            response = resend.Emails.send({
+                "from": "Expense Tracker <onboarding@resend.dev>",
+                "to": [email],
+                "subject": "Reset your Expense Tracker password",
+                "html": f"""
+                    <h2>Password Reset</h2>
+
+                    <p>Hello {user['username']},</p>
+
+                    <p>
+                        You requested account recovery for your
+                        Expense Tracker account.
+                    </p>
+
+                    <p>
+                        <strong>Username:</strong>
+                        {user['username']}
+                    </p>
+
+                    <p>
+                        To reset your password, click the button below:
+                    </p>
+
+                    <p>
+                        <a href="{reset_link}"
+                           style="
+                           display:inline-block;
+                           padding:12px 20px;
+                           background:#000;
+                           color:#fff;
+                           text-decoration:none;
+                           border-radius:6px;
+                           ">
+                            Reset Password
+                        </a>
+                    </p>
+
+                    <p>
+                        This password reset link will expire in
+                        <strong>5 minutes</strong>.
+                    </p>
+
+                    <p>
+                        If the link has expired, please request a new
+                        password reset link.
+                    </p>
+
+                    <p>
+                        If you did not request this, you can safely
+                        ignore this email.
+                    </p>
+
+                    <p>
+                        Regards,<br>
+                        Expense Tracker Team
+                    </p>
+                """
+            })
+
+            print("RESEND RESPONSE:", response)
+
+        except Exception as e:
+
+            print("RESEND ERROR:", repr(e))
+
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
         return Response(
-            {"error": str(e)},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            {
+                "message":
+                "Username and password reset link have been sent to your registered email."
+            },
+            status=status.HTTP_200_OK
         )
 
 
