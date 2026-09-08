@@ -257,7 +257,7 @@ class ForgotCredentialsView(APIView):
         # -------------------------
 
         reset_link = (
-            "https://expense-tracker-a8ftkfywk-rxmathi143s-projects.vercel.app"
+            "https://expense-tracker-three-umber-87.vercel.app/"
             f"/reset-password/{user['id']}/{reset_token}/"
         )
 
