@@ -47,7 +47,7 @@ function ResetPassword({ darkMode, onToggleTheme }) {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/reset-password/",
+        "https://expense-tracker-back-4143.onrender.com/api/reset-password/",
         {
           method: "POST",
 
