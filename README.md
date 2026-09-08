@@ -25,7 +25,7 @@ A full-stack expense management application built with **React, Django REST Fram
 ## 📸 Preview
 
 <p align="center">
-  <img src="frontend/src/assets/projects/expense-tracker.png" alt="Expense Tracker Preview" width="850"/>
+  <img src="./frontend/src/assets/projects/expense-tracker.png" alt="Expense Tracker Preview" width="850"/>
 </p>
 
 ---
