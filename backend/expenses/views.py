@@ -1,7 +1,7 @@
-import resend
 import os
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
 
-resend.api_key = os.getenv("RESEND_API_KEY")
 from backend.firebase import db
 from django.core.mail import send_mail
 
@@ -262,15 +262,35 @@ class ForgotCredentialsView(APIView):
         )
 
         # -------------------------
-        # SEND EMAIL USING RESEND
+        # SEND EMAIL USING BREVO
         # -------------------------
 
         try:
-            response = resend.Emails.send({
-                "from": "Expense Tracker <onboarding@resend.dev>",
-                "to": [email],
-                "subject": "Reset your Expense Tracker password",
-                "html": f"""
+
+            configuration = sib_api_v3_sdk.Configuration()
+
+            configuration.api_key["api-key"] = os.getenv(
+                "BREVO_API_KEY"
+            )
+
+            api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
+                sib_api_v3_sdk.ApiClient(configuration)
+            )
+
+            sender = sib_api_v3_sdk.SendSmtpEmailSender(
+                email=os.getenv("EMAIL_FROM"),
+                name="Expense Tracker"
+            )
+
+            send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
+                sender=sender,
+                to=[
+                    sib_api_v3_sdk.SendSmtpEmailTo(
+                        email=email
+                    )
+                ],
+                subject="Reset your Expense Tracker password",
+                html_content=f"""
                     <h2>Password Reset</h2>
 
                     <p>Hello {user['username']},</p>
@@ -323,16 +343,23 @@ class ForgotCredentialsView(APIView):
                         Expense Tracker Team
                     </p>
                 """
-            })
+            )
 
-            print("RESEND RESPONSE:", response)
+            response = api_instance.send_transac_email(
+                send_smtp_email
+            )
 
-        except Exception as e:
+            print("BREVO RESPONSE:", response)
 
-            print("RESEND ERROR:", repr(e))
+        except ApiException as e:
+
+            print("BREVO ERROR:", e)
 
             return Response(
-                {"error": str(e)},
+                {
+                    "error":
+                    "Unable to send password reset email."
+                },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
@@ -343,7 +370,6 @@ class ForgotCredentialsView(APIView):
             },
             status=status.HTTP_200_OK
         )
-
 
 class ResetPasswordView(APIView):
 
