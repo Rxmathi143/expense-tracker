@@ -221,51 +221,8 @@ def login(request):
 
 class ForgotCredentialsView(APIView):
 
-    permission_classes = [AllowAny]
-
-    def post(self, request):
-
-        email = request.data.get("email")
-
-        if not email:
-            return Response(
-                {"error": "Email is required."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        user = get_user_by_email(email)
-
-        if not user:
-            return Response(
-                {
-                    "error":
-                    "No account found with this email address."
-                },
-                status=status.HTTP_404_NOT_FOUND
-            )
-
-        # -------------------------
-        # CREATE RESET TOKEN
-        # -------------------------
-
-        reset_token = create_password_reset_token(
-            user["id"]
-        )
-
-        # -------------------------
-        # RESET LINK
-        # -------------------------
-
-        reset_link = (
-            "https://expense-tracker-a8ftkfywk-rxmathi143s-projects.vercel.app"
-            f"/reset-password/{user['id']}/{reset_token}/"
-        )
-
-        # -------------------------
-        # SEND EMAIL USING RESEND
-        # -------------------------
-
-        resend.Emails.send({
+    try:
+        response = resend.Emails.send({
             "from": "Expense Tracker <onboarding@resend.dev>",
             "to": [email],
             "subject": "Reset your Expense Tracker password",
@@ -274,30 +231,10 @@ class ForgotCredentialsView(APIView):
 
                 <p>Hello {user['username']},</p>
 
-                <p>
-                    You requested account recovery for your
-                    Expense Tracker account.
-                </p>
+                <p>You requested account recovery for your Expense Tracker account.</p>
 
                 <p>
-                    <strong>Username:</strong>
-                    {user['username']}
-                </p>
-
-                <p>
-                    To reset your password, click the button below:
-                </p>
-
-                <p>
-                    <a href="{reset_link}"
-                       style="
-                       display:inline-block;
-                       padding:12px 20px;
-                       background:#000;
-                       color:#fff;
-                       text-decoration:none;
-                       border-radius:6px;
-                       ">
+                    <a href="{reset_link}">
                         Reset Password
                     </a>
                 </p>
@@ -307,15 +244,7 @@ class ForgotCredentialsView(APIView):
                     <strong>5 minutes</strong>.
                 </p>
 
-                <p>
-                    If the link has expired, please request a new
-                    password reset link.
-                </p>
-
-                <p>
-                    If you did not request this, you can safely
-                    ignore this email.
-                </p>
+                <p>If you did not request this, you can safely ignore this email.</p>
 
                 <p>
                     Regards,<br>
@@ -324,12 +253,14 @@ class ForgotCredentialsView(APIView):
             """
         })
 
+        print("RESEND RESPONSE:", response)
+
+    except Exception as e:
+        print("RESEND ERROR:", repr(e))
+
         return Response(
-            {
-                "message":
-                "Username and password reset link have been sent to your registered email."
-            },
-            status=status.HTTP_200_OK
+            {"error": str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
 
